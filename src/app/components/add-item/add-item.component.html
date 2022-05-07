@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+      <div class="col-md-3 my-5">
+        <h2>
+          Admin Panel
+        </h2>
+      </div>
+    <div class="col md-6 my-5">
+        <h3 class="my-5 text-primary">Add a product</h3>
+      <form [formGroup]="productForm" class="my-3" (ngSubmit)="onSubmit()" novalidate>
+          <mat-card  class="my-5 bg-ascent">
+              <p class="text-success">{{ message }}</p>
+              <mat-card-content class="my-2">
+
+                <div class="row">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Product Name</mat-label>
+                      <input matInput placeholder="Product's name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && form.name.errors }"/>
+                    </mat-form-field>
+                    <div *ngIf="form.name.touched && form.name.errors" class="text-danger">
+                      <div *ngIf="form.name.errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Product Description</mat-label>
+                      <input matInput placeholder="Product's description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && form.description.errors }"/>
+                    </mat-form-field>
+                    <div *ngIf="form.description.touched && form.description.errors" class="text-danger">
+                      <div *ngIf="form.description.errors.required">
+                        Description is required
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Product Price</mat-label>
+                      <input matInput placeholder="Product's price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && form.price.errors }"/>
+                    </mat-form-field>
+                    <div *ngIf="form.price.touched && form.price.errors" class="text-danger">
+                      <div *ngIf="form.price.errors.required">
+                        Price is required
+                      </div>
+                    </div>
+                </div>
+
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="mx-2" [disabled]="productForm.invalid" mat-raised-button color="primary">{{id==0 || id==null ?'Save':'Update'}}</button>
+              </mat-card-actions>
+          </mat-card>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
